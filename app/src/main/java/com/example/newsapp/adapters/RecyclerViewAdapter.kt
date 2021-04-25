@@ -1,8 +1,12 @@
 package com.example.newsapp.adapters
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigator
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -45,12 +49,13 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.RecycleView
             recyclerview_item_heading.text = newsItem.title
             recyclerview_item_publishedAt.text = newsItem.description
             Glide.with(this).load(newsItem.urlToImage).into(recyclerview_item_imageView)
-            setOnClickListener{ onItemClicked(newsItem)}
+            setOnClickListener {
+                val bundle = Bundle().apply {
+                    putString("Url", newsItem.url)
+                }
+                findNavController().navigate(R.id.action_newsFragment_to_newsArticleFragment,bundle)
+            }
         }
-    }
-
-    private fun onItemClicked(newsItem: Article?) {
-        
     }
 
     override fun getItemCount(): Int {
