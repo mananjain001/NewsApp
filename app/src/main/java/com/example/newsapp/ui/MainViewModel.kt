@@ -7,8 +7,9 @@ import com.example.newsapp.models.ApiResponse
 import com.example.newsapp.repo.NewsRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel (val newsRepository : NewsRepository): ViewModel() {
+class MainViewModel @Inject constructor(val newsRepository : NewsRepository): ViewModel() {
 
     val newsData : MutableLiveData<ApiResponse> = MutableLiveData<ApiResponse>()
 

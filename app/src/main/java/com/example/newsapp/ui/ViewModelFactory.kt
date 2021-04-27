@@ -4,9 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.newsapp.repo.NewsRepository
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
 
-class ViewModelFactory (val newsRepository: NewsRepository): ViewModelProvider.Factory {
+class ViewModelFactory  @Inject constructor (val newsRepository: NewsRepository): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(MainViewModel::class.java)){
